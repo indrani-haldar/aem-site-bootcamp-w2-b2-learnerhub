@@ -1,0 +1,19 @@
+<div class="cmp-custom-checkbox"
+     data-sly-use.model="com.learnerhub.core.models.CustomCheckboxModel">
+    <h2 class="cmp-custom-checkbox__title" data-sly-test="${model.title}">${model.title}</h2>
+    <ul class="cmp-custom-checkbox__list" data-sly-test="${model.options}"
+        data-sly-list.option="${model.options}">
+        <li class="cmp-custom-checkbox__item">
+            <label class="cmp-custom-checkbox__label">
+                <input class="cmp-custom-checkbox__input"
+                       type="checkbox"
+                       value="${option.value}"
+                       checked="${option.checked}">
+                <span>${option.label}</span>
+            </label>
+        </li>
+    </ul>
+    <div class="cq-placeholder"
+         data-sly-test="${!model.options && wcmmode.edit}"
+         data-emptytext="Configure Custom Checkbox to add options"></div>
+</div>

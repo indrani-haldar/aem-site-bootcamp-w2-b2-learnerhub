@@ -1,0 +1,23 @@
+<sly data-sly-use.model="com.learnerhub.core.models.CourseCardModel"></sly>
+<sly data-sly-test.hasContent="${!model.empty}">
+    <div class="cmp-coursecard">
+        <a class="cmp-coursecard__link" data-sly-unwrap="${!model.link}" href="${model.link @ extension='html'}">
+            <div class="cmp-coursecard__image">
+                <img data-sly-test="${model.fileReference}" src="${model.fileReference}" alt="${model.alt}"/>
+                <svg data-sly-test="${!model.fileReference}" class="cmp-coursecard__placeholder" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 18l6-7 4 5 3-3 5 5z" fill="#b5bac3"/>
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="#b5bac3"/>
+                </svg>
+            </div>
+            <div class="cmp-coursecard__body">
+                <h3 class="cmp-coursecard__title">                ${model.title}</h3>
+                <p class="cmp-coursecard__meta">
+                                    ${model.level}<sly data-sly-test="${model.level && model.duration}"> | </sly>${model.duration}
+                </p>
+            </div>
+        </a>
+    </div>
+</sly>
+<sly data-sly-test="${!hasContent && wcmmode.edit}">
+    <p class="cq-placeholder" data-emptytext="Course Card"></p>
+</sly>

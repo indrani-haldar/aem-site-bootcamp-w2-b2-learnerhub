@@ -1,0 +1,101 @@
+.cmp-learningpathcard {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 220px;
+    padding: 12px;
+    border: 1px solid #d5d9e0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    color: #17191c;
+    font-family: inherit;
+
+    &__link {
+        display: block;
+        border-radius: 6px;
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 4px;
+        }
+    }
+
+    &__image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 9 / 4;
+        overflow: hidden;
+        border-radius: 5px;
+        background: #e2e4e9;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__placeholder {
+        display: block;
+        width: 100%;
+        height: 100%;
+        fill: #b4b8bf;
+    }
+
+    &__body {
+        padding: 10px 4px 0;
+    }
+
+    &__title {
+        margin: 0 0 6px;
+        color: #17191c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__meta {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        color: #4b4f56;
+        font-size: 14px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    &__arrow {
+        flex: 0 0 16px;
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: #17191c;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2;
+    }
+
+    @media (max-width: 1200px) {
+        max-width: 280px;
+    }
+
+    @media (max-width: 768px) {
+        max-width: none;
+    }
+}

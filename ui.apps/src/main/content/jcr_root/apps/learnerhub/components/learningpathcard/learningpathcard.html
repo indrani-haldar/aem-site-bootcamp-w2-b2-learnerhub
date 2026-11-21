@@ -1,0 +1,28 @@
+<sly data-sly-use.model="com.learnerhub.core.models.LearningPathCardModel"></sly>
+<sly data-sly-test.hasContent="${!model.empty}">
+    <article class="cmp-learningpathcard">
+        <a class="cmp-learningpathcard__link" data-sly-unwrap="${!model.link}" href="${model.link @ extension='html'}">
+            <div class="cmp-learningpathcard__image">
+                <img data-sly-test="${model.fileReference}" src="${model.fileReference}" alt="${model.alt}" loading="lazy"/>
+                <svg data-sly-test="${!model.fileReference}" class="cmp-learningpathcard__placeholder" viewBox="0 0 120 54" aria-hidden="true" focusable="false">
+                    <path d="M33 47 54 20 69 39 78 28 94 47Z"/>
+                    <circle cx="72" cy="15" r="6"/>
+                </svg>
+            </div>
+            <div class="cmp-learningpathcard__body">
+                <h3 class="cmp-learningpathcard__title">                ${model.title}</h3>
+                <div class="cmp-learningpathcard__footer">
+                    <p class="cmp-learningpathcard__meta">
+                                        <sly data-sly-test="${model.courseCount}">${model.courseCount} ${model.courseLabel}</sly><sly data-sly-test="${model.courseCount && model.duration}"> | </sly>${model.duration}
+                    </p>
+                    <svg class="cmp-learningpathcard__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="m9 5 7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+    </article>
+</sly>
+<sly data-sly-test="${!hasContent && wcmmode.edit}">
+    <div class="cq-placeholder" data-emptytext="Learning Path Card"></div>
+</sly>

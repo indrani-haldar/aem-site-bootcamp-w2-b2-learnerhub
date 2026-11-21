@@ -1,0 +1,157 @@
+//== Shared header and footer experience fragment theme, applied on every page.
+//== Loaded after experiencefragment_header.scss and experiencefragment_footer.scss (alphabetical glob order).
+
+$xf-border: #d5d9e0;
+$xf-text: #17191c;
+$xf-muted: #4b4f56;
+$xf-gutter: 20px;
+
+//== Header
+
+header.experiencefragment,
+.experiencefragment:has(> .cmp-experiencefragment--header) {
+    padding: 14px $xf-gutter;
+    border-bottom: 1px solid $xf-border;
+    background: #fff;
+
+    > .cmp-experiencefragment > .cmp-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .languagenavigation {
+        display: none;
+    }
+
+    .navigation {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .cmp-navigation__item--level-0 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+
+        > .cmp-navigation__item-link {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        > .cmp-navigation__group {
+            display: flex;
+            gap: 20px;
+        }
+    }
+
+    .cmp-navigation__item-link {
+        color: $xf-text;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .cmp-navigation__group,
+    .cmp-navigation__item {
+        list-style: none;
+    }
+
+    .cmp-navigation__group {
+        margin: 0;
+        padding: 0;
+    }
+
+    .cmp-navigation__item--active > .cmp-navigation__item-link {
+        font-weight: 600;
+    }
+
+    .cmp_search__info {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
+    .cmp-search__field {
+        margin: 0;
+    }
+
+    .cmp-search__icon {
+        top: 6px;
+    }
+
+    // Collapsed to an icon, expands when focused
+    .cmp-search__input {
+        box-sizing: border-box;
+        width: 28px;
+        height: 28px;
+        padding: 0 0 0 28px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        font-size: 13px;
+        cursor: pointer;
+        transition: width 0.2s ease;
+
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:focus {
+            width: 150px;
+            padding-right: 8px;
+            border-color: $xf-border;
+            background: #fff;
+            cursor: text;
+            outline: none;
+
+            &::placeholder {
+                color: #8a8f98;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding-right: 12px;
+        padding-left: 12px;
+
+        > .cmp-experiencefragment > .cmp-container {
+            gap: 8px;
+        }
+
+        .cmp-navigation__item--level-0 {
+            gap: 10px;
+
+            > .cmp-navigation__item-link {
+                font-size: 14px;
+            }
+
+            > .cmp-navigation__group {
+                gap: 10px;
+            }
+        }
+
+        .cmp-navigation__item-link {
+            font-size: 12px;
+        }
+    }
+}
+
+//== Footer
+
+footer.experiencefragment {
+    padding: 16px $xf-gutter;
+    border-top: 1px solid $xf-border;
+    background: #fff;
+
+    .cmp-text p {
+        margin: 0 0 4px;
+        color: $xf-muted;
+        font-size: 13px;
+    }
+}
