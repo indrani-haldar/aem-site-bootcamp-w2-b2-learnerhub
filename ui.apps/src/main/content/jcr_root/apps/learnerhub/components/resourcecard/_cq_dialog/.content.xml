@@ -47,8 +47,7 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                         fieldLabel="Description"
-                        name="./description"
-                        required="{Boolean}true"/>
+                        name="./description"/>
                     <readingTime
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

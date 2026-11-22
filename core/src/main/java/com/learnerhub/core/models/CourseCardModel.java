@@ -32,6 +32,10 @@ public class CourseCardModel {
     @Optional
     private String link;
 
+    @ValueMapValue
+    @Optional
+    private String category;
+
     public String getTitle() {
         return title;
     }
@@ -54,6 +58,10 @@ public class CourseCardModel {
 
     public String getLink() {
         return link;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public boolean isEmpty() {

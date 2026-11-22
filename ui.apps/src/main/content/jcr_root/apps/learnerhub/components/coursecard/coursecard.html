@@ -1,6 +1,6 @@
 <sly data-sly-use.model="com.learnerhub.core.models.CourseCardModel"></sly>
 <sly data-sly-test.hasContent="${!model.empty}">
-    <div class="cmp-coursecard">
+    <div class="cmp-coursecard" data-category="${model.category}" data-level="${model.level}">
         <a class="cmp-coursecard__link" data-sly-unwrap="${!model.link}" href="${model.link @ extension='html'}">
             <div class="cmp-coursecard__image">
                 <img data-sly-test="${model.fileReference}" src="${model.fileReference}" alt="${model.alt}"/>

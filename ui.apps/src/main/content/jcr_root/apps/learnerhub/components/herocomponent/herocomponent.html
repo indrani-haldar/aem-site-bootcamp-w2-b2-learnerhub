@@ -1,0 +1,48 @@
+<sly data-sly-use.model="com.learnerhub.core.models.LearningHeroModel"></sly>
+<sly data-sly-test.hasContent="${!model.empty}">
+    <div class="LearningHero-card ${model.courseVariant ? 'LearningHero-card--course' : ''}">
+
+        <div class="LearningHero-card__image">
+            <svg data-sly-test="${model.courseVariant}" class="LearningHero-card__play"
+                 viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                <circle cx="32" cy="32" r="30" fill="#8e9299"/>
+                <path d="M26 20l18 12-18 12z" fill="#fff"/>
+            </svg>
+            <img data-sly-test="${model.fileReference}"
+                 src="${model.fileReference}"
+                 alt="${model.title}"
+                 class="LearningHero-card__img">
+            <svg data-sly-test="${!model.fileReference}" class="LearningHero-card__placeholder"
+                 viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3 18l6-7 4 5 3-3 5 5z" fill="#b5bac3"/>
+                <circle cx="16.5" cy="7.5" r="2" fill="#b5bac3"/>
+            </svg>
+        </div>
+
+        <div class="LearningHero-card__content">
+
+            <h3 class="LearningHero-card__title" data-sly-test="${model.title}">
+                <span class="LearningHero-card__title-line" data-sly-repeat="${model.titleLines}">${item}</span>
+            </h3>
+
+            <p class="LearningHero-card__meta" data-sly-test="${model.courseVariant && model.levelAndDuration}">
+                ${model.levelAndDuration}
+            </p>
+
+            <p class="LearningHero-card__description" data-sly-test="${model.description}">
+                ${model.description}
+            </p>
+
+            <a class="LearningHero-card__cta"
+               href="${model.ctaHref}"
+               data-sly-test="${model.ctaText}">
+                ${model.ctaText}
+            </a>
+
+        </div>
+
+    </div>
+</sly>
+<sly data-sly-test="${!hasContent && wcmmode.edit}">
+    <p class="cq-placeholder" data-emptytext="Learning Hero"></p>
+</sly>

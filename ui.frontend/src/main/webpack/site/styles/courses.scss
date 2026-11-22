@@ -98,6 +98,59 @@ body:has(#course-catalog-layout) {
         width: 100%;
     }
 
+    #course-grid .coursecard[hidden] {
+        display: none !important;
+    }
+
+    // The catalog search filters cards in place, so hide the core server-results dropdown.
+    #course-catalog-layout .cmp-search__results {
+        display: none !important;
+    }
+
+    .course-count {
+        margin: 0 0 12px;
+        color: #17191c;
+        font-size: 14px;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    .course-pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 28px;
+
+        &[hidden] {
+            display: none;
+        }
+
+        &__button {
+            min-width: 32px;
+            height: 32px;
+            padding: 0 8px;
+            border: 1px solid $courses-border;
+            border-radius: 6px;
+            background: #fff;
+            color: #17191c;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+
+            &.is-active {
+                border-color: $courses-primary;
+                background: $courses-primary;
+                color: #fff;
+            }
+
+            &:disabled {
+                color: #b5bac3;
+                cursor: default;
+            }
+        }
+    }
+
     #course-filters.cmp-container {
         align-self: start;
     }
@@ -305,6 +358,23 @@ body:has(#course-catalog-layout) {
 
         #course-filters.cmp-container {
             width: 76px !important;
+        }
+
+        .course-count {
+            margin-bottom: 8px;
+            font-size: 11px;
+        }
+
+        .course-pagination {
+            gap: 6px;
+            margin-top: 18px;
+
+            &__button {
+                min-width: 24px;
+                height: 24px;
+                padding: 0 6px;
+                font-size: 11px;
+            }
         }
 
         .cmp-custom-checkbox {

@@ -19,15 +19,18 @@
             </div>
             <div class="cmp-resourcecard__body">
                 <h3 class="cmp-resourcecard__title">                ${model.title}</h3>
-                <p class="cmp-resourcecard__type">${resourceType}</p>
-                                <p data-sly-test="${model.description}" class="cmp-resourcecard__description">${model.description}</p>
-                                <p data-sly-test="${model.readingTime}" class="cmp-resourcecard__time">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <circle cx="12" cy="14" r="8"/>
-                        <path d="M10 2h4m-2 0v4m0 4v4l3 2"/>
-                    </svg>
-                    <span>${model.readingTime}</span>
-                </p>
+                <p data-sly-test.noDescription="${!model.description}" class="cmp-resourcecard__meta">${resourceType}<sly data-sly-test="${model.readingTime}"> · ${model.readingTime}</sly></p>
+                <sly data-sly-test="${!noDescription}">
+                    <p class="cmp-resourcecard__type">${resourceType}</p>
+                    <p class="cmp-resourcecard__description">${model.description}</p>
+                    <p data-sly-test="${model.readingTime}" class="cmp-resourcecard__time">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="14" r="8"/>
+                            <path d="M10 2h4m-2 0v4m0 4v4l3 2"/>
+                        </svg>
+                        <span>${model.readingTime}</span>
+                    </p>
+                </sly>
             </div>
             <svg class="cmp-resourcecard__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="m9 5 7 7-7 7"/>

@@ -32,6 +32,20 @@
                         fieldLabel="Course title"
                         name="./title"
                         required="{Boolean}true"/>
+                    <category
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Category"
+                        name="./category">
+                        <items jcr:primaryType="nt:unstructured">
+                            <aem jcr:primaryType="nt:unstructured" text="AEM" value="AEM"/>
+                            <frontend jcr:primaryType="nt:unstructured" text="Frontend" value="Frontend"/>
+                            <backend jcr:primaryType="nt:unstructured" text="Backend" value="Backend"/>
+                            <cloud jcr:primaryType="nt:unstructured" text="Cloud" value="Cloud"/>
+                            <devops jcr:primaryType="nt:unstructured" text="Devops" value="Devops"/>
+                            <security jcr:primaryType="nt:unstructured" text="Security" value="Security"/>
+                        </items>
+                    </category>
                     <level
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/select"
