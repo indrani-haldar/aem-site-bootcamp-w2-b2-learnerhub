@@ -1,0 +1,40 @@
+<sly data-sly-use.model="com.learnerhub.core.models.ResourceCardModel"></sly>
+<sly data-sly-test.hasContent="${!model.empty}">
+    <article class="cmp-resourcecard" data-resource-type="${model.resourceType}">
+        <a class="cmp-resourcecard__link" data-sly-unwrap="${!model.link}" href="${model.link @ extension='html'}">
+            <div data-sly-set.resourceType="${model.resourceType}" class="cmp-resourcecard__icon" aria-hidden="true">
+                <svg data-sly-test="${resourceType == 'Guide'}" viewBox="0 0 32 32" focusable="false">
+                    <path d="M16 8C12 5 7 5 2 6v21c5-1 10-1 14 2 4-3 9-3 14-2V6c-5-1-10-1-14 2Zm0 0v21"/>
+                </svg>
+                <svg data-sly-test="${resourceType == 'Video'}" viewBox="0 0 32 32" focusable="false">
+                    <circle cx="16" cy="16" r="13"/>
+                    <path class="cmp-resourcecard__play" d="m13 9 10 7-10 7Z"/>
+                </svg>
+                <svg data-sly-test="${resourceType == 'Article'}" viewBox="0 0 32 32" focusable="false">
+                    <path d="M6 3h13l7 7v19H6Zm13 0v8h7M11 16h10M11 21h10M11 26h7"/>
+                </svg>
+                <svg data-sly-test="${resourceType == 'Documentation'}" viewBox="0 0 32 32" focusable="false">
+                    <path d="M8 3h20v23H8ZM4 7v23h20M12 9h3m4 0h5M12 15h3m4 0h5M12 21h3m4 0h5"/>
+                </svg>
+            </div>
+            <div class="cmp-resourcecard__body">
+                <h3 class="cmp-resourcecard__title">${model.title}</h3>
+                <p class="cmp-resourcecard__type">${resourceType}</p>
+                                <p data-sly-test="${model.description}" class="cmp-resourcecard__description">${model.description}</p>
+                                <p data-sly-test="${model.readingTime}" class="cmp-resourcecard__time">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="14" r="8"/>
+                        <path d="M10 2h4m-2 0v4m0 4v4l3 2"/>
+                    </svg>
+                    <span>${model.readingTime}</span>
+                </p>
+            </div>
+            <svg class="cmp-resourcecard__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m9 5 7 7-7 7"/>
+            </svg>
+        </a>
+    </article>
+</sly>
+<sly data-sly-test="${!hasContent && wcmmode.edit}">
+    <div class="cq-placeholder" data-emptytext="Resource Card"></div>
+</sly>
