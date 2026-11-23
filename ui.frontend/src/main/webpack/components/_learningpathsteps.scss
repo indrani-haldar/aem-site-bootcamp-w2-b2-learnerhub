@@ -99,6 +99,10 @@
         text-decoration: none;
     }
 
+    &__button[hidden] {
+        display: none;
+    }
+
     &__step-body {
         min-width: 0;
         overflow-wrap: anywhere;

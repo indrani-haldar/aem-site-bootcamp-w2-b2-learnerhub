@@ -3,7 +3,8 @@ $cd-blue: #2563eb;
 $cd-text: #1f2937;
 $cd-line: #e3e6ea;
 // Keeps the content in an 800px column centred, with at least 16px on small screens
-$cd-side: max(16px, calc((100% - 800px) / 2));
+// $cd-side: max(16px, calc((100% - 800px) / 2));
+$cd-side: 20px;
 
 body:has(.LearningHero-card--course) {
     background: #fff;
@@ -12,7 +13,7 @@ body:has(.LearningHero-card--course) {
 .aem-Grid:has(> .accordion) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     color: $cd-text;
 
     &::before,
@@ -208,15 +209,12 @@ body:has(.LearningHero-card--course) {
 
     > .coursecard {
         float: none;
+        flex: 0 0 auto;
         box-sizing: border-box;
-        width: 50% !important;
-        max-width: 400px;
-        margin-left: 0 !important;
-        padding: 12px 6px 24px;
-
-        &:nth-of-type(n) {
-            flex: 0 0 auto;
-        }
+        width: calc(50% - 30px) !important;
+        max-width: none;
+        margin-left: $cd-side !important;
+        padding: 12px 0 20px;
 
         .cmp-coursecard {
             max-width: none;
@@ -225,29 +223,49 @@ body:has(.LearningHero-card--course) {
         }
 
         .cmp-coursecard__link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            display: block;
         }
 
         .cmp-coursecard__image {
-            flex: 0 0 56px;
-            height: 56px;
-            margin: 0;
-            aspect-ratio: auto;
+            width: 100%;
+            height: auto;
+            margin: 0 0 12px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f4f5f8;
+
+            img {
+                object-fit: contain;
+            }
         }
 
         .cmp-coursecard__placeholder {
-            width: 28px;
-            height: 28px;
+            width: 56px;
+            height: 56px;
         }
 
         .cmp-coursecard__title {
-            font-size: 14px;
+            font-size: clamp(14px, 0.5vw + 11px, 18px);
         }
 
         .cmp-coursecard__meta {
-            font-size: 12px;
+            font-size: clamp(12px, 0.3vw + 10px, 14px);
+        }
+    }
+
+    // 3 or more related cards: three per row on desktop
+    @media (min-width: 1024px) {
+        &:has(> .coursecard ~ .coursecard ~ .coursecard) > .coursecard {
+            width: calc(33.333% - 27px) !important;
+        }
+    }
+
+    @media (max-width: 600px) {
+        > .coursecard {
+            width: calc(100% - #{$cd-side * 2}) !important;
+            padding-bottom: 8px;
         }
     }
 
@@ -261,12 +279,8 @@ body:has(.LearningHero-card--course) {
         }
 
         > .coursecard {
-            padding: 8px 4px 20px;
-        }
-
-        .cmp-coursecard__image {
-            flex-basis: 44px;
-            height: 44px;
+            width: calc(100% - 24px) !important;
+            margin-left: 12px !important;
         }
     }
 }

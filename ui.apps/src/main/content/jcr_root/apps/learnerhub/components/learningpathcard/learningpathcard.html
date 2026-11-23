@@ -1,6 +1,9 @@
 <sly data-sly-use.model="com.learnerhub.core.models.LearningPathCardModel"></sly>
 <sly data-sly-test.hasContent="${!model.empty}">
-    <article class="cmp-learningpathcard">
+    <article class="cmp-learningpathcard"
+        data-path-title="${model.title}"
+        data-path-description="${model.description}"
+        data-path-link="${model.link @ extension='html'}">
         <a class="cmp-learningpathcard__link" data-sly-unwrap="${!model.link}" href="${model.link @ extension='html'}">
             <div class="cmp-learningpathcard__image">
                 <img data-sly-test="${model.fileReference}" src="${model.fileReference}" alt="${model.alt}" loading="lazy"/>
@@ -21,6 +24,9 @@
                 </div>
             </div>
         </a>
+        <ol class="cmp-learningpathcard__steps-data" hidden data-sly-list.step="${model.steps}">
+            <li data-title="${step.title}" data-duration="${step.duration}"></li>
+        </ol>
     </article>
 </sly>
 <sly data-sly-test="${!hasContent && wcmmode.edit}">

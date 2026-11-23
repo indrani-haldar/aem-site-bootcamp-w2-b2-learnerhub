@@ -58,6 +58,13 @@ $teaser-title: #17191c;
     text-decoration: none;
 }
 
+.cmp-teaser__link,
+.cmp-teaser__link:hover,
+.cmp-teaser__link:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
 .cmp-teaser__image {
     width: 36px;
     height: 36px;

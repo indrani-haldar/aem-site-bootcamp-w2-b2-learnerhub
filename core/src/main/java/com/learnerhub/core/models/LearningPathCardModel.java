@@ -1,8 +1,14 @@
 package com.learnerhub.core.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 @Model(adaptables = Resource.class)
@@ -32,6 +38,29 @@ public class LearningPathCardModel {
     @Optional
     private String link;
 
+    @ValueMapValue
+    @Optional
+    private String description;
+
+    @SlingObject
+    private Resource resource;
+
+    private final List<Step> steps = new ArrayList<>();
+
+    @PostConstruct
+    protected void init() {
+        Resource stepsResource = resource.getChild("steps");
+        if (stepsResource == null) {
+            return;
+        }
+        for (Resource child : stepsResource.getChildren()) {
+            String stepTitle = child.getValueMap().get("title", String.class);
+            if (stepTitle != null && !stepTitle.isEmpty()) {
+                steps.add(new Step(stepTitle, child.getValueMap().get("duration", String.class)));
+            }
+        }
+    }
+
     public String getTitle() {
         return title;
     }
@@ -60,7 +89,34 @@ public class LearningPathCardModel {
         return link;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Step> getSteps() {
+        return new ArrayList<>(steps);
+    }
+
     public boolean isEmpty() {
         return title == null || title.isEmpty();
+    }
+
+    public static final class Step {
+
+        private final String title;
+        private final String duration;
+
+        Step(String title, String duration) {
+            this.title = title;
+            this.duration = duration;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getDuration() {
+            return duration;
+        }
     }
 }

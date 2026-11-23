@@ -48,6 +48,35 @@
                         fieldLabel="Total duration (e.g. 20 hours)"
                         name="./duration"
                         required="{Boolean}true"/>
+                    <description
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                        fieldLabel="Learning path description"
+                        name="./description"/>
+                    <steps
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                        composite="{Boolean}true"
+                        fieldLabel="Learning path steps">
+                        <field
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            name="./steps">
+                            <items jcr:primaryType="nt:unstructured">
+                                <stepTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Step title"
+                                    name="./title"
+                                    required="{Boolean}true"/>
+                                <stepDuration
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Step duration (e.g. 4 hours)"
+                                    name="./duration"/>
+                            </items>
+                        </field>
+                    </steps>
                     <link
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

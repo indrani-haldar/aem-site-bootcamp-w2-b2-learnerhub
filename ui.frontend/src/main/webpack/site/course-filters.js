@@ -59,6 +59,16 @@ function showCourses() {
         return;
     }
 
+    let noResults = document.querySelector(".course-no-results");
+    if (!noResults) {
+        noResults = document.createElement("p");
+        noResults.className = "course-no-results";
+        noResults.textContent = "No Courses Found";
+        noResults.setAttribute("role", "status");
+        noResults.setAttribute("aria-live", "polite");
+        grid.append(noResults);
+    }
+
     // Create the count label and pagination once, around the card grid.
     let count = document.querySelector(".course-count");
     let pagination = document.querySelector(".course-pagination");
@@ -81,6 +91,8 @@ function showCourses() {
     matching.slice(start, start + COURSES_PER_PAGE).forEach((wrapper) => {
         wrapper.hidden = false;
     });
+
+    noResults.hidden = matching.length !== 0;
 
     count.textContent = matching.length === 1 ? "1 Course" : `${matching.length} Courses`;
 

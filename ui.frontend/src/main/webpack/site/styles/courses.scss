@@ -9,8 +9,10 @@ body:has(#course-catalog-layout) {
 
     #course-catalog-layout.cmp-container {
         box-sizing: border-box;
-        max-width: 1120px;
-        margin: 0 auto;
+        // max-width: 1120px;
+        // margin: 0 auto;
+        max-width: none;
+margin: 0;
         padding: 28px 24px 36px;
     }
 
@@ -100,6 +102,23 @@ body:has(#course-catalog-layout) {
 
     #course-grid .coursecard[hidden] {
         display: none !important;
+    }
+
+    .course-no-results {
+        grid-column: 1 / -1;
+        min-height: 280px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $courses-muted;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .course-no-results[hidden] {
+        display: none;
     }
 
     // The catalog search filters cards in place, so hide the core server-results dropdown.
@@ -209,10 +228,15 @@ body:has(#course-catalog-layout) {
         }
 
         &__image {
-            height: 118px;
+            height: auto;
+            aspect-ratio: 16 / 9;
             margin-bottom: 10px;
             border-radius: 6px;
             background: #e5e7eb;
+
+            img {
+                object-fit: cover;
+            }
         }
 
         &__placeholder {
@@ -252,8 +276,11 @@ body:has(#course-catalog-layout) {
             gap: 12px;
         }
 
-        .cmp-coursecard__image {
-            height: 96px;
+    }
+
+    @media (max-width: 600px) {
+        #course-grid.cmp-container {
+            grid-template-columns: minmax(0, 1fr);
         }
     }
 
@@ -352,7 +379,7 @@ body:has(#course-catalog-layout) {
         }
 
         #course-grid.cmp-container {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: minmax(0, 1fr);
             gap: 8px;
         }
 
@@ -405,7 +432,7 @@ body:has(#course-catalog-layout) {
 
             &__image {
                 height: auto;
-                aspect-ratio: 16 / 8;
+                aspect-ratio: 16 / 9;
                 margin-bottom: 8px;
             }
 

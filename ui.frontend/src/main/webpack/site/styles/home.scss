@@ -1,11 +1,18 @@
 body:has(.learninghero) {
     background: #fff;
+
+    main.container {
+        padding-right: 0;
+        padding-left: 0;
+    }
 }
 
 // Home page only: the grid that holds the hero component
 .aem-Grid:has(> .learninghero) {
-    max-width: 1000px;
-    margin: 0 auto;
+    // max-width: 1000px;
+    // margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
 

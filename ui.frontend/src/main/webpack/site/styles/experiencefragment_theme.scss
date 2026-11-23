@@ -37,19 +37,19 @@ header.experiencefragment,
         gap: 16px;
 
         > .cmp-navigation__item-link {
-            font-size: 15px;
+            font-size: clamp(16px, 1.2vw + 8px, 24px);
             font-weight: 700;
         }
 
         > .cmp-navigation__group {
             display: flex;
-            gap: 20px;
+            gap: clamp(12px, 2vw, 32px);
         }
     }
 
     .cmp-navigation__item-link {
         color: $xf-text;
-        font-size: 13px;
+        font-size: clamp(12px, 0.8vw + 8px, 18px);
         font-weight: 600;
         text-decoration: none;
         white-space: nowrap;
@@ -127,17 +127,12 @@ header.experiencefragment,
         .cmp-navigation__item--level-0 {
             gap: 10px;
 
-            > .cmp-navigation__item-link {
-                font-size: 15px;
-            }
-
             > .cmp-navigation__group {
                 gap: 12px;
             }
         }
 
         .cmp-navigation__item-link {
-            font-size: 11px;
             font-weight: 500;
         }
     }
@@ -145,14 +140,57 @@ header.experiencefragment,
 
 //== Footer
 
-footer.experiencefragment {
-    padding: 16px $xf-gutter;
+footer.experiencefragment,
+.experiencefragment:has(> .cmp-experiencefragment--footer) {
+    padding: clamp(14px, 2vw, 28px) $xf-gutter;
     border-top: 1px solid $xf-border;
     background: #fff;
 
-    .cmp-text p {
-        margin: 0 0 4px;
-        color: $xf-muted;
-        font-size: 13px;
+    > .cmp-experiencefragment > .cmp-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px clamp(16px, 4vw, 40px);
+    }
+
+    .aem-Grid,
+    .aem-GridColumn {
+        display: block;
+        float: none;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    .cmp-text {
+        margin: 0;
+
+        p {
+            margin: 0;
+            color: #111;
+            font-size: clamp(16px, 1.2vw + 8px, 24px);
+            font-weight: 700;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px clamp(16px, 4vw, 40px);
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a {
+            color: #333;
+            font-size: clamp(13px, 0.8vw + 9px, 18px);
+            font-weight: 500;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }

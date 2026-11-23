@@ -10,6 +10,19 @@
     color: #17191c;
     font-family: inherit;
 
+    &[role="button"] {
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 3px;
+        }
+    }
+
+    &.is-selected {
+        border-color: #2563eb;
+    }
+
     &__link {
         display: block;
         border-radius: 6px;
