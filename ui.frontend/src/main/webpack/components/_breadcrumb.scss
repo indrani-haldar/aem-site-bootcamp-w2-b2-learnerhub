@@ -1,5 +1,5 @@
 .cmp-breadcrumb {
-    padding: 8px 16px;
+    padding: $spacing-2 $spacing-4;
     font-size: 12px;
     color: #374151;
 }
@@ -21,7 +21,7 @@
 // ">" separator between items
 .cmp-breadcrumb__item:not(:last-child)::after {
     content: ">";
-    margin: 0 8px;
+    margin: 0 $spacing-2;
     color: #6b7280;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .cmp-breadcrumb__item--active {
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     color: #111827;
 }
 

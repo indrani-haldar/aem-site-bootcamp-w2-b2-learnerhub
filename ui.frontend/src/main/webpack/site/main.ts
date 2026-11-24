@@ -3,6 +3,6 @@
 import "./main.scss";
 
 // Javascript or Typescript
-import "./**/*.js";
+import "./scripts/**/*.js";
 import "./**/*.ts";
-import '../components/**/*.js';
+import "../components/scripts/**/*.js";

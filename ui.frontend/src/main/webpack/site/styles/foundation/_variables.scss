@@ -1,0 +1,59 @@
+
+//== Font
+
+$font-family:           "Inter", Arial, sans-serif;
+$font-size:             16px;
+$font-height:           1.5;
+
+//== Color
+
+// Normal mode
+$color-foreground:      #202020;
+$color-background:      #ECECEC;
+$color-link:            #2020E0;
+
+// Dark mode
+$color-foreground-dark: invert($color-foreground);
+$color-background-dark: invert($color-background);
+$color-link-dark:       invert($color-link);
+
+//== Shared UI colors
+
+$color-surface:          #fff;
+$color-text-primary:     #17191c;
+$color-text-strong:      #111;
+$color-text-secondary:   #4b4f56;
+$color-text-muted:       #5b616b;
+$color-text-subtle:      #555;
+$color-border:           #d5d9e0;
+$color-border-subtle:    #dfe3ea;
+$color-interactive:      #2563eb;
+$color-brand-primary:    #1456a3;
+$color-resource-primary: #1565c0;
+$color-hero-background:  #e6edfa;
+
+//== Shared sizing
+
+$spacing-1: 4px;
+$spacing-2: 8px;
+$spacing-3: 12px;
+$spacing-4: 16px;
+$spacing-5: 20px;
+$spacing-6: 24px;
+$spacing-7: 32px;
+
+$radius-small: 8px;
+$radius-medium: 12px;
+$radius-large: 14px;
+
+//== Font weights
+
+$font-weight-normal:    400;
+$font-weight-medium:    500;
+$font-weight-semibold:  600;
+$font-weight-bold:      700;
+
+
+body {
+  font-family: $font-family;
+}

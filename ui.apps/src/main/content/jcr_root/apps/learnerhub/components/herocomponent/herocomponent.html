@@ -3,16 +3,33 @@
     <div class="LearningHero-card ${model.courseVariant ? 'LearningHero-card--course' : ''}">
 
         <div class="LearningHero-card__image">
-            <svg data-sly-test="${model.courseVariant}" class="LearningHero-card__play"
+            <svg data-sly-test="${model.courseVariant && !model.videoReference}" class="LearningHero-card__play"
                  viewBox="0 0 64 64" aria-hidden="true" focusable="false">
                 <circle cx="32" cy="32" r="30" fill="#8e9299"/>
                 <path d="M26 20l18 12-18 12z" fill="#fff"/>
             </svg>
-            <img data-sly-test="${model.fileReference}"
+            <video data-sly-test="${model.videoReference}"
+                   class="LearningHero-card__video"
+                   controls
+                   playsinline
+                   preload="metadata"
+                   aria-label="${model.videoLabel}"
+                   data-sly-attribute.poster="${model.fileReference}">
+                <source src="${model.videoReference @ context='uri'}">
+                <track data-sly-test="${model.captionsReference}"
+                       kind="captions"
+                       src="${model.captionsReference @ context='uri'}"
+                       srclang="${model.captionsLanguage}"
+                       label="${model.captionsLabel}"
+                       default>
+                Your browser does not support HTML video.
+                <a href="${model.videoReference @ context='uri'}">Download the video</a>.
+            </video>
+            <img data-sly-test="${model.fileReference && !model.videoReference}"
                  src="${model.fileReference}"
                  alt="${model.title}"
                  class="LearningHero-card__img">
-            <svg data-sly-test="${!model.fileReference}" class="LearningHero-card__placeholder"
+            <svg data-sly-test="${!model.fileReference && !model.videoReference}" class="LearningHero-card__placeholder"
                  viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M3 18l6-7 4 5 3-3 5 5z" fill="#b5bac3"/>
                 <circle cx="16.5" cy="7.5" r="2" fill="#b5bac3"/>
@@ -33,11 +50,24 @@
                 ${model.description}
             </p>
 
+            <button class="LearningHero-card__cta"
+                    type="button"
+                    data-action="play-video"
+                    data-sly-test="${model.ctaText && model.videoReference}">
+                ${model.ctaText}
+            </button>
+
             <a class="LearningHero-card__cta"
                href="${model.ctaHref}"
-               data-sly-test="${model.ctaText}">
+               data-sly-test="${model.ctaText && !model.videoReference}">
                 ${model.ctaText}
             </a>
+
+            <p class="LearningHero-card__video-status"
+               role="status"
+               aria-live="polite"
+               data-sly-test="${model.videoReference}"
+               hidden></p>
 
         </div>
 

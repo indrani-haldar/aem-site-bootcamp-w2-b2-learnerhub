@@ -22,6 +22,22 @@ public class LearningHeroModel {
 
     @ValueMapValue
     @Optional
+    private String videoReference;
+
+    @ValueMapValue
+    @Optional
+    private String captionsReference;
+
+    @ValueMapValue
+    @Optional
+    private String captionsLanguage;
+
+    @ValueMapValue
+    @Optional
+    private String captionsLabel;
+
+    @ValueMapValue
+    @Optional
     private String ctaText;
 
     @ValueMapValue
@@ -90,6 +106,29 @@ public class LearningHeroModel {
         return fileReference;
     }
 
+    public String getVideoReference() {
+        return hasText(videoReference) ? videoReference.trim() : null;
+    }
+
+    public String getCaptionsReference() {
+        return hasText(captionsReference) ? captionsReference.trim() : null;
+    }
+
+    public String getCaptionsLanguage() {
+        return hasText(captionsLanguage) ? captionsLanguage.trim() : "en";
+    }
+
+    public String getCaptionsLabel() {
+        return hasText(captionsLabel) ? captionsLabel.trim() : "English";
+    }
+
+    public String getVideoLabel() {
+        if (hasText(title)) {
+            return title.trim();
+        }
+        return hasText(description) ? description.trim() : "Course video";
+    }
+
     public String getCtaText() {
         return ctaText;
     }
@@ -99,6 +138,10 @@ public class LearningHeroModel {
     }
 
     public boolean isEmpty() {
-        return (title == null || title.isEmpty()) && (description == null || description.isEmpty());
+        return !hasText(title) && !hasText(description) && getVideoReference() == null;
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 }
