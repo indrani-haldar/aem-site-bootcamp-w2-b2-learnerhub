@@ -1,5 +1,45 @@
-.cmp-breadcrumb {}
-.cmp-breadcrumb__list {}
-.cmp-breadcrumb__item {}
-.cmp-breadcrumb__item--active {}
-.cmp-breadcrumb__item-link {}
+.cmp-breadcrumb {
+    padding: $spacing-2 $spacing-4;
+    font-size: 12px;
+    color: #374151;
+}
+
+.cmp-breadcrumb__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cmp-breadcrumb__item {
+    display: flex;
+    align-items: center;
+}
+
+// ">" separator between items
+.cmp-breadcrumb__item:not(:last-child)::after {
+    content: ">";
+    margin: 0 $spacing-2;
+    color: #6b7280;
+}
+
+.cmp-breadcrumb__item-link {
+    color: #374151;
+    text-decoration: none;
+}
+
+.cmp-breadcrumb__item--active {
+    font-weight: $font-weight-bold;
+    color: #111827;
+}
+
+.cmp-breadcrumb__item:first-child .cmp-breadcrumb__item-link {
+    font-size: 0;
+
+    &::before {
+        content: "Home";
+        font-size: 12px;
+    }
+}

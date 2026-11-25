@@ -1,0 +1,239 @@
+$hero-bg: $color-hero-background;
+$hero-border: #d3def5;
+$hero-title: $color-text-primary;
+$hero-text: $color-text-muted;
+$hero-primary: $color-brand-primary;
+$hero-primary-dark: #0f4380;
+
+.learninghero {
+    width: 100%;
+}
+
+.LearningHero-card {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: $spacing-6;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 28px;
+    background: $hero-bg;
+    border: 1px solid $hero-border;
+    border-radius: $radius-medium;
+
+    &__image {
+        flex: 0 0 42%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: #e5e7eb;
+        border-radius: $radius-small;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        object-fit: contain;
+    }
+
+    &__placeholder {
+        width: 45%;
+        height: 45%;
+    }
+
+    &__content {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    &__title {
+        margin: 0 0 $spacing-3;
+        color: $hero-title;
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    &__title-line {
+        display: block;
+    }
+
+    &__description {
+        margin: 0 0 22px;
+        color: $hero-text;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    &__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 22px;
+        border: 0;
+        background: $hero-primary;
+        color: $color-surface;
+        font-size: 14px;
+        font-weight: $font-weight-semibold;
+        font-family: inherit;
+        text-decoration: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background: $hero-primary-dark;
+            color: $color-surface;
+            text-decoration: none;
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(20, 86, 163, 0.35);
+            outline-offset: 3px;
+        }
+    }
+
+    &__video-status {
+        margin: $spacing-2 0 0;
+        color: #b42318;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        gap: $spacing-5;
+        padding: $spacing-4;
+
+        &__title {
+            font-size: 26px;
+        }
+
+        &__description {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        gap: $spacing-3;
+        padding: 10px $spacing-3;
+        border-radius: $radius-medium;
+
+        &__image {
+            flex: 0 0 38%;
+            aspect-ratio: 4 / 3;
+            border-radius: $radius-small;
+        }
+
+        &__title {
+            margin-bottom: $spacing-1;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        &__title-line {
+            white-space: nowrap;
+        }
+
+        &__description {
+            margin-bottom: $spacing-2;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        &__cta {
+            padding: $spacing-2 14px;
+            font-size: 12px;
+        }
+    }
+
+    // Course detail page variant: plain row, video-style image on the left
+    &--course {
+        flex-direction: row;
+        align-items: center;
+        gap: $spacing-4;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+
+        .LearningHero-card__image {
+            position: relative;
+            flex: 0 0 45%;
+            aspect-ratio: 16 / 10;
+            background: #d9dce1;
+        }
+
+        .LearningHero-card__placeholder {
+            display: none;
+        }
+
+        .LearningHero-card__play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 36%;
+            max-width: 64px;
+            transform: translate(-50%, -50%);
+        }
+
+        .LearningHero-card__title {
+            margin-bottom: $spacing-2;
+            font-size: 22px;
+        }
+
+        .LearningHero-card__meta {
+            margin: 0 0 $spacing-3;
+            color: $hero-title;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .LearningHero-card__cta {
+            padding: 9px 18px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            gap: $spacing-3;
+
+            .LearningHero-card__image {
+                flex-basis: 45%;
+                aspect-ratio: 16 / 10;
+            }
+
+            .LearningHero-card__title {
+                margin-bottom: 6px;
+                font-size: 16px;
+            }
+
+            .LearningHero-card__title-line {
+                white-space: normal;
+            }
+
+            .LearningHero-card__meta {
+                margin-bottom: 10px;
+                font-size: 13px;
+            }
+
+            .LearningHero-card__description {
+                margin-bottom: 10px;
+                font-size: 13px;
+            }
+
+            .LearningHero-card__cta {
+                padding: $spacing-2 14px;
+                font-size: 12px;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<sly data-sly-use.model="com.learnerhub.core.models.LearningPathStepsModel">
+    <div class="cmp-learningpathsteps" data-sly-test="${model.title}">
+        <h3 class="cmp-learningpathsteps__title">${model.title}</h3>
+        <p class="cmp-learningpathsteps__description" data-sly-test="${model.description}">${model.description}</p>
+        <ol class="cmp-learningpathsteps__steps" data-sly-test="${model.steps}" data-sly-list.step="${model.steps}">
+            <li class="cmp-learningpathsteps__step">
+                <span class="cmp-learningpathsteps__number">${stepList.count}</span>
+                <div class="cmp-learningpathsteps__step-body">
+                    <span class="cmp-learningpathsteps__step-title">${step.title}</span>
+                    <span class="cmp-learningpathsteps__step-duration" data-sly-test="${step.duration}">${step.duration}</span>
+                </div>
+            </li>
+        </ol>
+        <a class="cmp-learningpathsteps__button" data-sly-test="${model.buttonText}" href="${model.buttonLink @ extension='html'}">${model.buttonText}</a>
+    </div>
+    <p class="cq-placeholder" data-sly-test="${!model.title && wcmmode.edit}" data-emptytext="Learning Path Steps"></p>
+</sly>

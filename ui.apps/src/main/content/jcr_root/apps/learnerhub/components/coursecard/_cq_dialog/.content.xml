@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Course Card"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <image
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                        class="cq-droptarget"
+                        fieldLabel="Image"
+                        fileNameParameter="./fileName"
+                        fileReferenceParameter="./fileReference"
+                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/svg+xml]"
+                        name="./file"
+                        useHTML5="{Boolean}true"/>
+                    <alt
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Image alt text"
+                        name="./alt"/>
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Course title"
+                        name="./title"
+                        required="{Boolean}true"/>
+                    <category
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Category"
+                        name="./category">
+                        <items jcr:primaryType="nt:unstructured">
+                            <aem jcr:primaryType="nt:unstructured" text="AEM" value="AEM"/>
+                            <frontend jcr:primaryType="nt:unstructured" text="Frontend" value="Frontend"/>
+                            <backend jcr:primaryType="nt:unstructured" text="Backend" value="Backend"/>
+                            <cloud jcr:primaryType="nt:unstructured" text="Cloud" value="Cloud"/>
+                            <devops jcr:primaryType="nt:unstructured" text="Devops" value="Devops"/>
+                            <security jcr:primaryType="nt:unstructured" text="Security" value="Security"/>
+                        </items>
+                    </category>
+                    <level
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Level"
+                        name="./level">
+                        <items jcr:primaryType="nt:unstructured">
+                            <beginner
+                                jcr:primaryType="nt:unstructured"
+                                text="Beginner"
+                                value="Beginner"/>
+                            <intermediate
+                                jcr:primaryType="nt:unstructured"
+                                text="Intermediate"
+                                value="Intermediate"/>
+                            <advanced
+                                jcr:primaryType="nt:unstructured"
+                                text="Advanced"
+                                value="Advanced"/>
+                        </items>
+                    </level>
+                    <duration
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Duration (e.g. 4 hr)"
+                        name="./duration"/>
+                    <link
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Link"
+                        name="./link"
+                        rootPath="/content"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

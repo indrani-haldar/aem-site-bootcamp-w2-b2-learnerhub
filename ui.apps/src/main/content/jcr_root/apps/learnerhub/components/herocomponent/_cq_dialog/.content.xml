@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Learning Hero"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:hideResource="{Boolean}true"/>
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Title"
+                        name="./title"/>
+                    <description
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                        fieldLabel="Description"
+                        name="./description"/>
+                    <image
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                        class="cq-droptarget"
+                        fieldLabel="Image"
+                        fieldDescription="Optional poster image for the video, or the hero image when no video is selected."
+                        fileNameParameter="./fileName"
+                        fileReferenceParameter="./fileReference"
+                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/svg+xml]"
+                        name="./file"
+                        useHTML5="{Boolean}true"/>
+                    <video
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                        class="cq-droptarget"
+                        fieldLabel="Video"
+                        fieldDescription="Optional MP4 or WebM asset. Selecting a video replaces the hero image with an inline player. It does not autoplay."
+                        fileNameParameter="./videoFileName"
+                        fileReferenceParameter="./videoReference"
+                        mimeTypes="[video/mp4,video/webm]"
+                        name="./video"
+                        useHTML5="{Boolean}true"/>
+                    <captions
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Captions (WebVTT)"
+                        fieldDescription="Optional caption track for the selected video."
+                        name="./captionsReference"
+                        rootPath="/content/dam"/>
+                    <captionsLanguage
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Caption language"
+                        fieldDescription="BCP 47 language code, for example en or en-US."
+                        name="./captionsLanguage"
+                        value="en"/>
+                    <captionsLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Caption label"
+                        fieldDescription="Language name shown in the player, for example English."
+                        name="./captionsLabel"
+                        value="English"/>
+                    <ctaText
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="CTA Text"
+                        name="./ctaText"/>
+                    <ctaLink
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="CTA Link"
+                        name="./ctaLink"
+                        rootPath="/content"/>
+                    <courseVariant
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        fieldDescription="Use the course detail layout. Without a video, the image is shown with a play icon."
+                        name="./courseVariant"
+                        text="Course detail layout"
+                        uncheckedValue="false"
+                        value="true"/>
+                    <level
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldDescription="Course detail layout only"
+                        fieldLabel="Level"
+                        name="./level">
+                        <items jcr:primaryType="nt:unstructured">
+                            <none
+                                jcr:primaryType="nt:unstructured"
+                                text="-- None --"
+                                value=""/>
+                            <beginner
+                                jcr:primaryType="nt:unstructured"
+                                text="Beginner"
+                                value="Beginner"/>
+                            <intermediate
+                                jcr:primaryType="nt:unstructured"
+                                text="Intermediate"
+                                value="Intermediate"/>
+                            <advanced
+                                jcr:primaryType="nt:unstructured"
+                                text="Advanced"
+                                value="Advanced"/>
+                        </items>
+                    </level>
+                    <duration
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        emptyText="4 Hours"
+                        fieldDescription="Course detail layout only"
+                        fieldLabel="Duration"
+                        name="./duration"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

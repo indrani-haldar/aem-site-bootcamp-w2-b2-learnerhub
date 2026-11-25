@@ -1,133 +1,114 @@
-# Sample AEM project template
+# LearnerHub
 
-This is a project template for AEM-based applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own functionality.
+LearnerHub is an Adobe Experience Manager (AEM) as a Cloud Service learning portal. It provides course catalog and detail pages, learning paths, and learning resources, built with reusable AEM components and responsive frontend styles.
 
-## Modules
+## Features
 
-The main parts of the template are:
+- Browse courses, learning paths, and learning resources.
+- Search and filter the course catalog.
+- Render course details with a Learning Hero that supports an image or an MP4/WebM video, including optional captions.
+- Manage page templates, content, and OSGi configuration through AEM packages.
+- Compile frontend JavaScript and Sass into AEM client libraries.
 
-* [core:](core/README.md) Java bundle containing all core functionality like OSGi services, listeners or schedulers, as well as component-related Java code such as servlets or request filters.
-* [it.tests:](it.tests/README.md) Java based integration tests
-* [ui.apps:](ui.apps/README.md) contains the /apps (and /etc) parts of the project, ie JS&CSS clientlibs, components, and templates
-* [ui.content:](ui.content/README.md) contains sample content using the components from the ui.apps
-* ui.config: contains runmode specific OSGi configs for the project
-* [ui.frontend:](ui.frontend.general/README.md) an optional dedicated front-end build mechanism (general Webpack project)
-* [ui.tests:](ui.tests/README.md) Cypress based UI tests (for other frameworks check [aem-test-samples](https://github.com/adobe/aem-test-samples) repository
-* all: a single content package that embeds all of the compiled modules (bundles and content packages) including any vendor dependencies
-* analyse: this module runs analysis on the project which provides additional validation for deploying into AEMaaCS
+## Technology
 
-## How to build
+- AEM as a Cloud Service and the AEM SDK
+- Java 11, Maven, Sling Models, OSGi, and HTL
+- Webpack, JavaScript/TypeScript, Sass, and AEM Client Libraries
+- JUnit-based integration tests and Cypress UI tests
+- Cloud-optimized Dispatcher configuration
 
-To build all the modules run in the project root directory the following command with Maven 3:
+## Repository modules
 
-    mvn clean install
+| Module | Purpose |
+| --- | --- |
+| `core` | OSGi bundle containing Java models, services, and business logic. |
+| `dispatcher` | Cloud-optimized Dispatcher and web server configuration. |
+| `ui.apps` | AEM components, templates, client libraries, and application code. |
+| `ui.apps.structure` | Defines the repository structure for the application packages. |
+| `ui.config` | OSGi configuration for AEM run modes. |
+| `ui.content` | Initial site content, templates, and content configuration. |
+| `ui.frontend` | Webpack frontend build; compiles JavaScript and Sass and generates client libraries. |
+| `it.tests` | Java integration tests that run against AEM instances. |
+| `ui.tests` | Cypress end-to-end UI tests. |
+| `all` | Aggregates the application packages for convenient deployment. |
 
-To build all the modules and deploy the `all` package to a local instance of AEM, run in the project root directory the following command:
+## Requirements
 
-    mvn clean install -PautoInstallSinglePackage
+- Java 11
+- Maven 3
+- Node.js 16.17.0 and npm 8.15.0 for frontend builds (these versions are configured in the Maven frontend plugin)
+- A local AEM SDK author instance for local deployment; the default URL is `http://localhost:4502`
+- A local publish instance at `http://localhost:4503` when running integration tests that require publish
 
-Or to deploy it to a publish instance, run
+## Build and deploy
 
-    mvn clean install -PautoInstallSinglePackagePublish
+Run commands from the repository root.
 
-Or alternatively
+Build and test all Maven modules:
 
-    mvn clean install -PautoInstallSinglePackage -Daem.port=4503
+```shell
+mvn clean install
+```
 
-Or to deploy only the bundle to the author, run
+Build and install the aggregate package to the local AEM author instance:
 
-    mvn clean install -PautoInstallBundle
+```shell
+mvn clean install -PautoInstallSinglePackage
+```
 
-Or to deploy only a single content package, run in the sub-module directory (i.e `ui.apps`)
+Install only the Core bundle:
 
-    mvn clean install -PautoInstallPackage
+```shell
+mvn clean install -pl core -PautoInstallBundle
+```
 
-## Documentation
+Build and install the `ui.apps` package:
 
-The build process also generates documentation in the form of README.md files in each module directory for easy reference. Depending on the options you select at build time, the content may be customized to your project.
+```shell
+mvn clean install -pl ui.apps -PautoInstallPackage
+```
 
-## Testing
+Local deployment profiles use the host, port, and credentials configured in the Maven POM/settings. Do not commit credentials.
 
-There are three levels of testing contained in the project:
+## Frontend development
 
-### Unit tests
+The frontend source is under `ui.frontend/src/main/webpack`:
 
-This show-cases classic unit testing of the code contained in the bundle. To
-test, execute:
+```text
+components/
+  *.scss         Existing Core Component Sass styles
+  scripts/       Component JavaScript
+  styles/        LearnerHub-specific component Sass styles
+site/
+  scripts/       Site behavior
+  styles/
+    foundation/  Shared Sass variables and base styles
+    layouts/     Shared layout styles
+    experience-fragments/
+    pages/       Page-specific styles
+  main.ts        Webpack JavaScript entry point
+  main.scss      Webpack Sass entry point
+```
 
-    mvn clean test
+Install frontend dependencies and build the client libraries:
 
-### Integration tests
+```shell
+cd ui.frontend
+npm ci
+npm run prod
+```
 
-This allows running integration tests that exercise the capabilities of AEM via
-HTTP calls to its API. To run the integration tests, run:
+For development, run `npm start` from `ui.frontend` to start the Webpack development server. `npm run dev` generates a non-production frontend build.
 
-    mvn clean verify -Plocal
+## Tests
 
-Test classes must be saved in the `src/main/java` directory (or any of its
-subdirectories), and must be contained in files matching the pattern `*IT.java`.
+Run the configured Maven tests:
 
-The configuration provides sensible defaults for a typical local installation of
-AEM. If you want to point the integration tests to different AEM author and
-publish instances, you can use the following system properties via Maven's `-D`
-flag.
+## Deployment
 
-| Property              | Description                                         | Default value           |
-|-----------------------|-----------------------------------------------------|-------------------------|
-| `it.author.url`       | URL of the author instance                          | `http://localhost:4502` |
-| `it.author.user`      | Admin user for the author instance                  | `admin`                 |
-| `it.author.password`  | Password of the admin user for the author instance  | `admin`                 |
-| `it.publish.url`      | URL of the publish instance                         | `http://localhost:4503` |
-| `it.publish.user`     | Admin user for the publish instance                 | `admin`                 |
-| `it.publish.password` | Password of the admin user for the publish instance | `admin`                 |
+Production deployments are performed through Adobe Cloud Manager Full Stack Pipelines. Validate Dispatcher configuration with the Dispatcher SDK/Tools before deployment.
 
-The integration tests in this archetype use the [AEM Testing
-Clients](https://github.com/adobe/aem-testing-clients) and showcase some
-recommended [best
-practices](https://github.com/adobe/aem-testing-clients/wiki/Best-practices) to
-be put in use when writing integration tests for AEM.
+## License
 
-## Static Analysis
-
-The `analyse` module performs static analysis on the project for deploying into AEMaaCS. It is automatically
-run when executing
-
-    mvn clean install
-
-from the project root directory. Additional information about this analysis and how to further configure it
-can be found here https://github.com/adobe/aemanalyser-maven-plugin
-
-### UI tests
-
-They will test the UI layer of your AEM application using Cypress framework.
-
-Check README file in `ui.tests` module for more details.
-
-Examples of UI tests in different frameworks can be found here: https://github.com/adobe/aem-test-samples
-
-## ClientLibs
-
-The frontend module is made available using an [AEM ClientLib](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/clientlibs.html). When executing the NPM build script, the app is built and the [`aem-clientlib-generator`](https://github.com/wcm-io-frontend/aem-clientlib-generator) package takes the resulting build output and transforms it into such a ClientLib.
-
-A ClientLib will consist of the following files and directories:
-
-- `css/`: CSS files which can be requested in the HTML
-- `css.txt` (tells AEM the order and names of files in `css/` so they can be merged)
-- `js/`: JavaScript files which can be requested in the HTML
-- `js.txt` (tells AEM the order and names of files in `js/` so they can be merged
-- `resources/`: Source maps, non-entrypoint code chunks (resulting from code splitting), static assets (e.g. icons), etc.
-
-## Simplified Index Management
-
-If you're building for AEM as a Cloud Service, this project includes a `diff.index` under
-`ui.apps/src/main/content/jcr_root/_oak_index` ([documentation](https://oak-indexing.github.io/oakTools/simplified.html)).
-Packaging it triggers a benign Maven build warning from the `jackrabbit-nodetypes` validator
-(`... is not allowed as child of node with potential default types [nt:folder] ... /oak:index/diff.index`),
-because `/oak:index`'s real node type isn't declared in any content package. It's a known false
-positive and safe to ignore.
-
-## Maven settings
-
-The project comes with the auto-public repository configured. To setup the repository in your Maven settings, refer to:
-
-    http://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html
+See [LICENSE](LICENSE).

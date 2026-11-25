@@ -1,0 +1,136 @@
+//== Learning Resources page (scoped through the page intro content fragment)
+
+$lr-border: $color-border;
+$lr-text: $color-text-primary;
+$lr-muted: $color-text-secondary;
+$lr-primary: $color-resource-primary;
+$lr-gutter: $spacing-5;
+
+html:has(.cmp-contentfragment--learning-resources),
+html:has(#learning-path-list) {
+    background: $color-surface;
+}
+
+body:has(.cmp-contentfragment--learning-resources),
+body:has(#learning-path-list) {
+    &,
+    & .root.container {
+        background: $color-surface;
+        color: $lr-text;
+    }
+
+    //== Main content
+
+    .cmp-contentfragment--learning-resources {
+        margin: 0;
+        padding: $spacing-6 $lr-gutter 0;
+
+        .cmp-contentfragment__title {
+            margin: 0 0 $spacing-2;
+            color: $lr-text;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .cmp-contentfragment__description {
+            margin: 0;
+            color: $lr-muted;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+
+        .cmp-contentfragment__elements {
+            display: none;
+        }
+    }
+
+    #resource-filters.cmp-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-2;
+        margin: 0;
+        padding: $spacing-5 $lr-gutter;
+
+        .button {
+            margin: 0;
+        }
+
+        .cmp-button {
+            padding: 6px 14px;
+            border: 1px solid #c9ced6;
+            border-radius: $radius-small;
+            background: $color-surface;
+            color: $lr-text;
+            font-size: 13px;
+            font-weight: $font-weight-semibold;
+            line-height: 1.4;
+            cursor: pointer;
+
+            &:hover,
+            &:focus-visible {
+                border-color: $lr-primary;
+                color: $lr-primary;
+            }
+        }
+
+        .cmp-button[aria-pressed="true"] {
+            border-color: $lr-primary;
+            background: $lr-primary;
+            color: $color-surface;
+        }
+    }
+
+    #resource-list.cmp-container {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 0 $lr-gutter 28px;
+
+        .resourcecard[hidden],
+        .cmp-resourcecard[hidden] {
+            display: none;
+        }
+
+        .resourcecard,
+        .cmp-resourcecard {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+        }
+
+        .cmp-resourcecard {
+            padding: $spacing-4;
+            border-color: $lr-border;
+            border-radius: 10px;
+            background: $color-surface;
+        }
+
+        .cmp-resourcecard__icon {
+            flex-basis: 64px;
+            height: 64px;
+        }
+
+        .cmp-resourcecard__title {
+            font-size: 15px;
+        }
+
+        .cmp-resourcecard__type,
+        .cmp-resourcecard__meta {
+            font-size: 13px;
+            letter-spacing: 0.02em;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .cmp-contentfragment--learning-resources,
+        #resource-filters.cmp-container,
+        #resource-list.cmp-container {
+            width: 100%;
+            max-width: 720px;
+            margin-right: auto;
+            margin-left: auto;
+            box-sizing: border-box;
+        }
+    }
+}

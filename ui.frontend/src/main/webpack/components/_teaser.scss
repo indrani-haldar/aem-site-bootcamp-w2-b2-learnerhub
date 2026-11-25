@@ -1,9 +1,123 @@
-.cmp-teaser {}
-.cmp-teaser__image {}
-.cmp-teaser__content {}
-.cmp-teaser__pretitle {}
-.cmp-teaser__title {}
-.cmp-teaser__title-link {}
-.cmp-teaser__description {}
-.cmp-teaser__action-container {}
-.cmp-teaser__action-link {}
+// "Browse by Skill" teasers: icon above label, four equal cards per row.
+$teaser-border: $color-border-subtle;
+$teaser-title: $color-text-primary;
+
+// Override the 1/12 grid column the editor gives each teaser.
+.aem-Grid > .teaser {
+    box-sizing: border-box;
+    float: left;
+    width: 25% !important;
+    margin-left: 0 !important;
+    padding: 0 6px $spacing-3;
+}
+
+.cmp-teaser {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    padding: $spacing-4 $spacing-2;
+    background: $color-surface;
+    border: 1px solid $teaser-border;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+}
+
+.cmp-teaser__content {
+    width: 100%;
+    min-width: 0;
+}
+
+.cmp-teaser__pretitle,
+.cmp-teaser__description,
+.cmp-teaser__action-container {
+    display: none;
+}
+
+.cmp-teaser__title {
+    margin: 0;
+    color: $teaser-title;
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.cmp-teaser__title-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cmp-teaser__link,
+.cmp-teaser__link:hover,
+.cmp-teaser__link:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cmp-teaser__image {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+
+    .cmp-image,
+    .cmp-image__link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cmp-image__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 768px) {
+    .cmp-teaser {
+        padding: 14px 6px;
+    }
+
+    .cmp-teaser__title {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aem-Grid > .teaser {
+        padding: 0 3px $spacing-2;
+    }
+
+    .cmp-teaser {
+        gap: $spacing-2;
+        padding: $spacing-3 $spacing-1;
+        border-radius: $radius-small;
+    }
+
+    .cmp-teaser__image {
+        width: 28px;
+        height: 28px;
+    }
+
+    .cmp-teaser__title {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 320px) {
+    .aem-Grid > .teaser {
+        width: 50% !important;
+    }
+}
